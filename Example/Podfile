@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RFTypeface_Example' do
+  pod 'RFTypeface', :path => '../'
+
+  target 'RFTypeface_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
