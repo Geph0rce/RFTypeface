@@ -8,11 +8,11 @@ make NSAttributedString easy to use
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-{% highlight objc %}
+```objectivec
 NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).build;
 NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).build;
 self.label.attributedText = RFAttributedString(hello, @" ", world);
-{% endhighlight %}
+```
 
 ## Requirements
 
