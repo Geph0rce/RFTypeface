@@ -82,6 +82,22 @@
     return string;
 }
 
+NSAttributedString *_RFAttributedString(int size,...) {
+    va_list vl;
+    va_start(vl, size);
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] init];
+    for (NSUInteger i = 0; i < size; i++) {
+        id string = va_arg(vl, id);
+        NSAttributedString *mas = [[NSAttributedString alloc] init];
+        if ([string isKindOfClass:[NSAttributedString class]]) {
+            mas = string;
+        } else if ([string isKindOfClass:[NSString class]]) {
+            mas = [[NSAttributedString alloc] initWithString:string];
+        }
+        [result appendAttributedString:mas];
+    }
+    return result;
+}
 
 #pragma mark - Getters
 
