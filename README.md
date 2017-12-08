@@ -3,14 +3,16 @@
 make NSAttributedString easy to use
 
 
-[![CI Status](http://img.shields.io/travis/Geph0rce/RFTypeface.svg?style=flat)](https://travis-ci.org/Geph0rce/RFTypeface)
-[![Version](https://img.shields.io/cocoapods/v/RFTypeface.svg?style=flat)](http://cocoapods.org/pods/RFTypeface)
-[![License](https://img.shields.io/cocoapods/l/RFTypeface.svg?style=flat)](http://cocoapods.org/pods/RFTypeface)
-[![Platform](https://img.shields.io/cocoapods/p/RFTypeface.svg?style=flat)](http://cocoapods.org/pods/RFTypeface)
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+{% highlight objc %}
+NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).build;
+NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).build;
+self.label.attributedText = RFAttributedString(hello, @" ", world);
+{% endhighlight %}
 
 ## Requirements
 
@@ -25,7 +27,7 @@ pod 'RFTypeface'
 
 ## Author
 
-Geph0rce, qianjie@58ganji.com
+Roger
 
 ## License
 

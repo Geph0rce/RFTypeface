@@ -16,6 +16,9 @@
 
 @implementation RFTypeface
 
+
+#pragma mark - NSFontAttributeName
+
 - (RFTypeface *(^)(UIFont *font))font {
     return ^id(UIFont *font) {
         guard (font) else {
@@ -39,6 +42,9 @@
     };
 }
 
+
+#pragma mark - NSForegroundColorAttributeName
+
 - (RFTypeface *(^)(UIColor *color))color {
     return ^id(UIColor *color) {
         guard(color) else {
@@ -57,13 +63,23 @@
     };
 }
 
-- (RFTypeface *(^)(NSUInteger hexValue))hex {
-    return ^id(NSUInteger hexValue) {
+- (RFTypeface *(^)(NSUInteger hex))hex {
+    return ^id(NSUInteger hex) {
         NSUInteger red, green, blue;
-        blue = hexValue & 0x0000FF;
-        green = ((hexValue & 0x00FF00) >> 8);
-        red = ((hexValue & 0xFF0000) >> 16);
+        blue = hex & 0x0000FF;
+        green = ((hex & 0x00FF00) >> 8);
+        red = ((hex & 0xFF0000) >> 16);
         return self.rgb(red, green, blue);
+    };
+}
+
+
+#pragma mark - NSBaselineOffsetAttributeName
+
+- (RFTypeface *(^)(CGFloat offset))offset {
+    return ^id(CGFloat offset) {
+        [self.attributes addEntriesFromDictionary:@{ NSBaselineOffsetAttributeName : @(offset) }];
+        return self;
     };
 }
 

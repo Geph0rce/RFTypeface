@@ -16,14 +16,27 @@ NSAttributedString *_RFAttributedString(int size,...);
 
 @property (nonatomic, copy) NSString *string;
 
+
+/**
+ NSFontAttributeName
+ */
 - (RFTypeface *(^)(CGFloat fontSize))normal;
 - (RFTypeface *(^)(CGFloat fontSize))bold;
 - (RFTypeface *(^)(UIFont *font))font;
 
 
+/**
+ NSForegroundColorAttributeName
+ */
 - (RFTypeface *(^)(UIColor *color))color;
 - (RFTypeface *(^)(CGFloat red, CGFloat green, CGFloat blue))rgb;
-- (RFTypeface *(^)(NSUInteger hexValue))hex;
+- (RFTypeface *(^)(NSUInteger hex))hex;
+
+/**
+ NSBaselineOffsetAttributeName
+ offset > 0 move up, offset < 0 move down
+ */
+- (RFTypeface *(^)(CGFloat offset))offset;
 
 - (NSAttributedString *)build;
 

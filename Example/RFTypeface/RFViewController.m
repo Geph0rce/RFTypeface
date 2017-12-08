@@ -24,8 +24,8 @@
         make.top.mas_equalTo(100.0);
         make.centerX.mas_equalTo(self.view);
     }];
-    NSAttributedString *hello = @"hello".typeface.normal(22.0).rgb(232, 74, 1).build;
-    NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0,0,0).build;
+    NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).build;
+    NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).build;
     self.label.attributedText = RFAttributedString(hello, @" ", world);
 }
 
