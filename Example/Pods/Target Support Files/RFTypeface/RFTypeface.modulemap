@@ -1,6 +1,0 @@
-framework module RFTypeface {
-  umbrella header "RFTypeface-umbrella.h"
-
-  export *
-  module * { export * }
-}

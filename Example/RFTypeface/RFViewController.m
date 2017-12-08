@@ -10,6 +10,8 @@
 
 @interface RFViewController ()
 
+@property (nonatomic, strong) UILabel *label;
+
 @end
 
 @implementation RFViewController
@@ -17,13 +19,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.view addSubview:self.label];
+    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(100.0);
+        make.centerX.mas_equalTo(self.view);
+    }];
+    NSAttributedString *hello = @"hello".typeface.normal(22.0).rgb(232, 74, 1).build;
+    self.label.attributedText = hello;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+}
+
+#pragma mark - Getters
+
+- (UILabel *)label {
+    if (!_label) {
+        _label = [[UILabel alloc] init];
+    }
+    return _label;
 }
 
 @end

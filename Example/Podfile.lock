@@ -1,7 +1,15 @@
 PODS:
+  - Masonry (1.1.0)
+  - RFFoundation (0.1.1):
+    - RFFoundation/Categories (= 0.1.1)
+    - RFFoundation/Preprocessors (= 0.1.1)
+  - RFFoundation/Categories (0.1.1)
+  - RFFoundation/Preprocessors (0.1.1)
   - RFTypeface (0.1.0)
 
 DEPENDENCIES:
+  - Masonry
+  - RFFoundation
   - RFTypeface (from `../`)
 
 EXTERNAL SOURCES:
@@ -9,8 +17,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  RFTypeface: 197341c039c8620c74168c05af1f7597bc04082c
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  RFFoundation: 9c10f17a70521341c0fae0e7cb65d9ed08ffb451
+  RFTypeface: 38cd7135e6adf02721fe16a0eefa393e21153968
 
-PODFILE CHECKSUM: cf3e6ada77e5e02d0d33d89460cae30b2a60b64e
+PODFILE CHECKSUM: 5702de70a1bb5fe8959bf49e99c84e357fa43063
 
 COCOAPODS: 1.3.1
