@@ -25,6 +25,8 @@ NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).build;
 self.label.attributedText = RFAttributedString(hello, @" ", world);
 ```
 
+![](./Screenshots/IMG_2710(20171209-102605).jpg)
+
 ## Requirements
 
 ## Installation
