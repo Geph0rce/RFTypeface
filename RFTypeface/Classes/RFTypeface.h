@@ -38,6 +38,19 @@ NSAttributedString *_RFAttributedString(int size,...);
  */
 - (RFTypeface *(^)(CGFloat offset))offset;
 
-- (NSAttributedString *)build;
+/**
+ NSParagraphStyleAttributeName
+ lineSpace of string
+ */
+- (RFTypeface *(^)(CGFloat lineSpacing))lineSpacing;
+
+
+/**
+ NSParagraphStyleAttributeName
+ lineBreakMode of string
+ */
+- (RFTypeface *(^)(NSLineBreakMode lineBreakMode))lineBreakMode;
+
+- (NSAttributedString *)compose;
 
 @end

@@ -11,6 +11,7 @@
 @interface RFTypeface ()
 
 @property (nonatomic, strong) NSMutableDictionary *attributes;
+@property (nonatomic, strong) NSMutableParagraphStyle *paragraphStyle;
 
 @end
 
@@ -83,12 +84,30 @@
     };
 }
 
-- (NSAttributedString *)build {
+#pragma mark - NSParagraphStyleAttributeName
+
+- (RFTypeface *(^)(CGFloat lineSpacing))lineSpacing {
+    return ^id(CGFloat lineSpacing) {
+        self.paragraphStyle.lineSpacing = lineSpacing;
+        [self.attributes addEntriesFromDictionary:@{ NSParagraphStyleAttributeName : self.paragraphStyle }];
+        return self;
+    };
+}
+
+- (RFTypeface *(^)(NSLineBreakMode lineBreakMode))lineBreakMode {
+    return ^id(NSLineBreakMode lineBreakMode) {
+        self.paragraphStyle.lineBreakMode = lineBreakMode;
+        [self.attributes addEntriesFromDictionary:@{ NSParagraphStyleAttributeName : self.paragraphStyle }];
+        return self;
+    };
+}
+
+- (NSAttributedString *)compose {
     guard (self.string.length > 0) else {
         DLog(@"self.string is nil");
         return [[NSAttributedString alloc] init];
     }
-    
+
     guard (self.attributes.count > 0) else {
         DLog(@"self.attributes is empty, nothing to build");
         return [[NSAttributedString alloc] initWithString:self.string];
@@ -122,6 +141,13 @@ NSAttributedString *_RFAttributedString(int size,...) {
         _attributes = [[NSMutableDictionary alloc] init];
     }
     return _attributes;
+}
+
+- (NSMutableParagraphStyle *)paragraphStyle {
+    if (!_paragraphStyle) {
+        _paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    }
+    return _paragraphStyle;
 }
 
 @end
