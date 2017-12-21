@@ -20,8 +20,8 @@ NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]
 self.label.attributedText = attributedString;
     
 // after:
-NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).build;
-NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).build;
+NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).compose;
+NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).compose;
 self.label.attributedText = RFAttributedString(hello, @" ", world);
 ```
 
