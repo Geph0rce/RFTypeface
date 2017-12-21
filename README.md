@@ -29,12 +29,17 @@ self.label.attributedText = RFAttributedString(hello, @" ", world);
 
 ## Requirements
 
+iOS 6.0+
+
 ## Installation
 
-RFTypeface is available through [CocoaPods](http://cocoapods.org). To install
+RFTypeface is available through [https://github.com/Geph0rce/specs.git](https://github.com/Geph0rce/specs.git). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
+source 'https://github.com/Geph0rce/specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 pod 'RFTypeface'
 ```
 
