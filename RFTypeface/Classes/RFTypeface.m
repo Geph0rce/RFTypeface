@@ -5,7 +5,6 @@
 //  Created by qianjie on 2017/12/8.
 //
 
-#import <RFFoundation/RFFoundation.h>
 #import "RFTypeface.h"
 
 @interface RFTypeface ()
@@ -22,8 +21,8 @@
 
 - (RFTypeface *(^)(UIFont *font))font {
     return ^id(UIFont *font) {
-        guard (font) else {
-            DLog(@"font is nil");
+        if (!font) {
+            NSLog(@"font is nil");
             return self;
         }
         [self.attributes addEntriesFromDictionary:@{ NSFontAttributeName : font }];
@@ -48,8 +47,8 @@
 
 - (RFTypeface *(^)(UIColor *color))color {
     return ^id(UIColor *color) {
-        guard(color) else {
-            DLog(@"color is nil");
+        if (!color) {
+            NSLog(@"color is nil");
             return self;
         }
         [self.attributes addEntriesFromDictionary:@{ NSForegroundColorAttributeName : color }];
@@ -103,16 +102,16 @@
 }
 
 - (NSAttributedString *)compose {
-    guard (self.string.length > 0) else {
-        DLog(@"self.string is nil");
+    if (self.string.length == 0) {
+        NSLog(@"self.string is nil");
         return [[NSAttributedString alloc] init];
     }
 
-    guard (self.attributes.count > 0) else {
-        DLog(@"self.attributes is empty, nothing to build");
+    if (self.attributes.count == 0) {
+        NSLog(@"self.attributes is empty");
         return [[NSAttributedString alloc] initWithString:self.string];
     }
-    
+
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
     return string;
 }

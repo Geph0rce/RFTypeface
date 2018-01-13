@@ -6,7 +6,6 @@
 //
 
 #import <RFTypeface/NSString+RFTypeface.h>
-#import <RFFoundation/RFFoundation.h>
 
 #define RFAttributedString(...) _RFAttributedString(metamacro_argcount(__VA_ARGS__), __VA_ARGS__)
 
