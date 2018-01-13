@@ -43,13 +43,25 @@ NSAttributedString *_RFAttributedString(int size,...);
  */
 - (RFTypeface *(^)(CGFloat lineSpacing))lineSpacing;
 
-
 /**
  NSParagraphStyleAttributeName
  lineBreakMode of string
  */
 - (RFTypeface *(^)(NSLineBreakMode lineBreakMode))lineBreakMode;
 
+
+/**
+ NSParagraphStyleAttributeName
+ lineHeight of string
+ */
+- (RFTypeface *(^)(CGFloat lineHeight))lineHeight;
+
+
+/**
+ add all attributes on the chain to the string
+
+ @return return string with attributes on the chain
+ */
 - (NSAttributedString *)compose;
 
 @end

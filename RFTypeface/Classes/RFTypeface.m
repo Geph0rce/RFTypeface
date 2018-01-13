@@ -101,6 +101,14 @@
     };
 }
 
+- (RFTypeface *(^)(CGFloat lineHeight))lineHeight {
+    return ^id(CGFloat lineHeight) {
+        self.paragraphStyle.minimumLineHeight = lineHeight;
+        self.paragraphStyle.maximumLineHeight = lineHeight;
+        return self;
+    };
+}
+
 - (NSAttributedString *)compose {
     if (self.string.length == 0) {
         NSLog(@"self.string is nil");
