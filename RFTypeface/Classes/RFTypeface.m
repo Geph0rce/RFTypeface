@@ -105,6 +105,7 @@
     return ^id(CGFloat lineHeight) {
         self.paragraphStyle.minimumLineHeight = lineHeight;
         self.paragraphStyle.maximumLineHeight = lineHeight;
+        [self.attributes addEntriesFromDictionary:@{ NSParagraphStyleAttributeName : self.paragraphStyle }];
         return self;
     };
 }
