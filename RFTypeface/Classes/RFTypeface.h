@@ -56,6 +56,12 @@ NSAttributedString *_RFAttributedString(int size,...);
  */
 - (RFTypeface *(^)(CGFloat lineHeight))lineHeight;
 
+/**
+ NSKernAttributeName
+ spacing between letters
+ */
+- (RFTypeface *(^)(CGFloat spacing))kern;
+
 
 /**
  add all attributes on the chain to the string

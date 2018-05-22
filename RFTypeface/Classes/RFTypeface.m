@@ -110,6 +110,13 @@
     };
 }
 
+- (RFTypeface *(^)(CGFloat spacing))kern {
+    return ^id(CGFloat spacing) {
+        [self.attributes addEntriesFromDictionary:@{ NSKernAttributeName : @(spacing) }];
+        return self;
+    };
+}
+
 - (NSAttributedString *)compose {
     if (self.string.length == 0) {
         NSLog(@"self.string is nil");
