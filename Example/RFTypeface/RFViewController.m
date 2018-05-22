@@ -43,10 +43,14 @@
     
     NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).compose;
     NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).compose;
-    self.label.attributedText = RFAttributedString(hello, @" ", world);
+    NSAttributedString *spacing = @" ".typeface.kern(6.0).compose;
+    self.label.backgroundColor = [UIColor redColor];
+    self.label.attributedText = RFAttributedString(hello, spacing, world);
     //NSAttributedString *attributedString = @"attributed string".typeface.normal(22.0).rgb(232, 74, 1).compose;
     NSAttributedString *multiLineString = @"venti venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti".typeface.normal(22.0).lineSpacing(10.0).compose;
     self.multiLineLabel.attributedText = multiLineString;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +64,7 @@
 - (UILabel *)label {
     if (!_label) {
         _label = [[UILabel alloc] init];
+        _label.font = [UIFont systemFontOfSize:14.0];
     }
     return _label;
 }

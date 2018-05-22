@@ -8,7 +8,8 @@ target 'RFTypeface_Example' do
   pod 'RFTypeface', :path => '../'
   pod 'RFFoundation'
   pod 'Masonry'
-  
+  pod 'FLEX', '~> 2.0', :configurations => ['Debug']
+
   target 'RFTypeface_Tests' do
     inherit! :search_paths
 
