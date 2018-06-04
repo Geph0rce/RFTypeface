@@ -23,6 +23,7 @@
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(100.0);
         make.centerX.mas_equalTo(self.view);
+        make.height.mas_equalTo(16.0);
     }];
     
     [self.view addSubview:self.multiLineLabel];
@@ -43,9 +44,9 @@
     
     NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).compose;
     NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).compose;
-    NSAttributedString *spacing = @" ".typeface.kern(6.0).compose;
+    NSAttributedString *spacing = @" ".typeface.font([UIFont systemFontOfSize:1.0]).kern(6.0).compose;
     self.label.backgroundColor = [UIColor redColor];
-    self.label.attributedText = RFAttributedString(hello, spacing, world);
+    self.label.attributedText = spacing;//RFAttributedString(hello, spacing, world);
     //NSAttributedString *attributedString = @"attributed string".typeface.normal(22.0).rgb(232, 74, 1).compose;
     NSAttributedString *multiLineString = @"venti venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti".typeface.normal(22.0).lineSpacing(10.0).compose;
     self.multiLineLabel.attributedText = multiLineString;

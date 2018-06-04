@@ -118,18 +118,18 @@
 }
 
 - (NSAttributedString *)compose {
-    if (self.string.length == 0) {
-        NSLog(@"self.string is nil");
-        return [[NSAttributedString alloc] init];
-    }
-
-    if (self.attributes.count == 0) {
-        NSLog(@"self.attributes is empty");
+    if (self.attributedString.length > 0 && self.attributes.count) {
+        NSMutableAttributedString *mutableAttributedString = [self.attributedString mutableCopy];
+        [mutableAttributedString addAttributes:self.attributes range:NSMakeRange(0, self.attributedString.length)];
+        return mutableAttributedString;
+    } else if (self.string.length > 0 && self.attributes.count) {
+        return [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
+    } else if (self.attributedString.length > 0 && !self.attributes.count) {
+        return self.attributedString;
+    } else if (self.string.length > 0 && !self.attributes.count) {
         return [[NSAttributedString alloc] initWithString:self.string];
     }
-
-    NSAttributedString *string = [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
-    return string;
+    return [[NSAttributedString alloc] init];
 }
 
 NSAttributedString *_RFAttributedString(int size,...) {

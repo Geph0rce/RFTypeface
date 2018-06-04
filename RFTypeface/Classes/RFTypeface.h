@@ -14,6 +14,7 @@ NSAttributedString *_RFAttributedString(int size,...);
 @interface RFTypeface : NSObject
 
 @property (nonatomic, copy) NSString *string;
+@property (nonatomic, copy) NSAttributedString *attributedString;
 
 
 /**
