@@ -73,6 +73,19 @@
     };
 }
 
+#pragma mark - NSBackgroundColorAttributeName
+
+- (RFTypeface *(^)(UIColor *))background {
+    return ^id(UIColor *color) {
+        if (!color) {
+            NSLog(@"color is nil");
+            return self;
+        }
+        [self.attributes addEntriesFromDictionary:@{ NSBackgroundColorAttributeName : color }];
+        return self;
+    };
+}
+
 
 #pragma mark - NSBaselineOffsetAttributeName
 
@@ -110,6 +123,16 @@
     };
 }
 
+- (RFTypeface *(^)(CGFloat indent))firstLineHeadIndent {
+    return ^id(CGFloat indent) {
+        self.paragraphStyle.firstLineHeadIndent = indent;
+        [self.attributes addEntriesFromDictionary:@{ NSParagraphStyleAttributeName : self.paragraphStyle }];
+        return self;
+    };
+}
+
+
+#pragma mark - NSKernAttributeName
 - (RFTypeface *(^)(CGFloat spacing))kern {
     return ^id(CGFloat spacing) {
         [self.attributes addEntriesFromDictionary:@{ NSKernAttributeName : @(spacing) }];

@@ -33,6 +33,12 @@ NSAttributedString *_RFAttributedString(int size,...);
 - (RFTypeface *(^)(CGFloat red, CGFloat green, CGFloat blue))rgb;
 - (RFTypeface *(^)(NSUInteger hex))hex;
 
+
+/**
+ NSBackgroundColorAttributeName
+ */
+- (RFTypeface *(^)(UIColor *color))background;
+
 /**
  NSBaselineOffsetAttributeName
  offset > 0 move up, offset < 0 move down
@@ -57,6 +63,12 @@ NSAttributedString *_RFAttributedString(int size,...);
  lineHeight of string
  */
 - (RFTypeface *(^)(CGFloat lineHeight))lineHeight;
+
+/**
+ NSParagraphStyleAttributeName
+ first line head indent of string
+ */
+- (RFTypeface *(^)(CGFloat indent))firstLineHeadIndent;
 
 /**
  NSKernAttributeName

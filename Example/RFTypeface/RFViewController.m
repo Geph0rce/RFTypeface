@@ -8,6 +8,8 @@
 
 #import "RFViewController.h"
 
+static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a lot like you were.Old man look at my life,I'm a lot like you were.Old man look at my life,Twenty four and there's so much moreLive alone in a paradiseThat makes me think of two.Love lost, such a cost,Give me things that don't get lost.Like a coin that won't get tossedRolling home to you.Old man take a look at my life I'm a lot like youI need someone to love me the whole day throughAh, one look in my eyes and you can tell that's true.Lullabies, look in your eyes,Run around the same old town.Doesn't mean that much to meTo mean that much to you.I've been first and lastLook at how the time goes past.But I'm all alone at last.Rolling home to you.";
+
 @interface RFViewController ()
 
 @property (nonatomic, strong) UILabel *label;
@@ -16,8 +18,7 @@
 
 @implementation RFViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.label];
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,15 +43,14 @@
 //    [attributedString appendAttributedString:world];
 //    self.label.attributedText = attributedString;
     
-    NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).compose;
+    NSAttributedString *hello = @"hello".typeface.bold(22.0).rgb(232, 74, 1).background([UIColor greenColor]).compose;
     NSAttributedString *world = @"world".typeface.normal(22.0).rgb(0, 0, 0).compose;
     NSAttributedString *spacing = @" ".typeface.font([UIFont systemFontOfSize:1.0]).kern(6.0).compose;
-    self.label.backgroundColor = [UIColor redColor];
-    self.label.attributedText = spacing;//RFAttributedString(hello, spacing, world);
-    //NSAttributedString *attributedString = @"attributed string".typeface.normal(22.0).rgb(232, 74, 1).compose;
-    NSAttributedString *multiLineString = @"venti venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti  venti".typeface.normal(22.0).lineSpacing(10.0).compose;
-    self.multiLineLabel.attributedText = multiLineString;
+    self.label.attributedText = RFAttributedString(hello, spacing, world);
     
+    NSAttributedString *oldMan = kRFViewControllerString.typeface.font([UIFont systemFontOfSize:16.0]).lineHeight(20.0).firstLineHeadIndent(60.0).lineBreakMode(NSLineBreakByTruncatingTail).compose;
+    
+    self.multiLineLabel.attributedText = oldMan;
     
 }
 
