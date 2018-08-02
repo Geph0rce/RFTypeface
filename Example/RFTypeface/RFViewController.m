@@ -48,10 +48,10 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     NSAttributedString *spacing = @" ".typeface.font([UIFont systemFontOfSize:1.0]).kern(6.0).compose;
     self.label.attributedText = RFAttributedString(hello, spacing, world);
     
-    NSAttributedString *oldMan = kRFViewControllerString.typeface.font([UIFont systemFontOfSize:16.0]).lineHeight(20.0).firstLineHeadIndent(60.0).lineBreakMode(NSLineBreakByTruncatingTail).compose;
-    
-    self.multiLineLabel.attributedText = oldMan;
-    
+    NSAttributedString *multiLineAttributedString = kRFViewControllerString.typeface.normal(16.0).lineHeight(20.0).compose;
+    CGSize size = multiLineAttributedString.typeface.sizeThatFits(CGSizeMake(SCREEN_WIDTH - 30.0, MAXFLOAT));
+    DLog(@"size: %@, number of lines: %@", NSStringFromCGSize(size), @(size.height/20.0));
+    self.multiLineLabel.attributedText = multiLineAttributedString;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,8 +73,9 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
 - (UILabel *)multiLineLabel {
     if (!_multiLineLabel) {
         _multiLineLabel = [[UILabel alloc] init];
-        _multiLineLabel.numberOfLines = 3.0;
-        _multiLineLabel.preferredMaxLayoutWidth = SCREEN_WIDTH - 16.0 * 2;
+        _multiLineLabel.numberOfLines = 0;
+        _multiLineLabel.font = [UIFont systemFontOfSize:15.0];
+        _multiLineLabel.preferredMaxLayoutWidth = SCREEN_WIDTH - 15.0 * 2;
     }
     return _multiLineLabel;
 }

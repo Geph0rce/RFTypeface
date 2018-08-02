@@ -84,4 +84,21 @@ NSAttributedString *_RFAttributedString(int size,...);
  */
 - (NSAttributedString *)compose;
 
+
+/**
+ single line text size
+ 
+ @return size of text in single line
+ */
+- (CGSize)size;
+
+
+/**
+ multiple line text size, only support NSLineBreakByWordWrapping or NSLineBreakByCharWrapping line break mode
+
+ size  preferd size that text should fit
+ @return size that text fits
+ */
+- (CGSize (^)(CGSize size))sizeThatFits;
+
 @end

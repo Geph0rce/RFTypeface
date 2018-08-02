@@ -133,12 +133,16 @@
 
 
 #pragma mark - NSKernAttributeName
+
 - (RFTypeface *(^)(CGFloat spacing))kern {
     return ^id(CGFloat spacing) {
         [self.attributes addEntriesFromDictionary:@{ NSKernAttributeName : @(spacing) }];
         return self;
     };
 }
+
+
+#pragma mark - Results
 
 - (NSAttributedString *)compose {
     if (self.attributedString.length > 0 && self.attributes.count) {
@@ -154,6 +158,36 @@
     }
     return [[NSAttributedString alloc] init];
 }
+
+- (CGSize)size {
+    NSAttributedString *attributedString = [self.compose copy];
+    if (attributedString.length > 0) {
+        return attributedString.size;
+    }
+    return CGSizeZero;
+}
+
+
+- (CGSize (^)(CGSize size))sizeThatFits {
+    return ^CGSize(CGSize size) {
+        NSAttributedString *attributedString = [self.compose copy];
+        if (attributedString.length > 0) {
+            NSParagraphStyle *paragraphStyle = [attributedString attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil];
+            NSLineBreakMode lineBreakMode = paragraphStyle.lineBreakMode;
+            if (lineBreakMode == NSLineBreakByCharWrapping ||
+                lineBreakMode == NSLineBreakByWordWrapping) {
+                CGRect rect = [attributedString boundingRectWithSize:size  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+                return rect.size;
+            } else {
+                NSLog(@"invalid lineBreakMode, ( NSLineBreakByCharWrapping / NSLineBreakByWordWrapping only )");
+            }
+        }
+        return CGSizeZero;
+    };
+}
+
+
+#pragma mark - Concat
 
 NSAttributedString *_RFAttributedString(int size,...) {
     va_list vl;
