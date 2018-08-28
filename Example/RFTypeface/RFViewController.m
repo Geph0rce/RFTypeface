@@ -14,6 +14,8 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
 
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UILabel *multiLineLabel;
+@property (nonatomic, strong) UILabel *spacingLabel;
+
 @end
 
 @implementation RFViewController
@@ -52,6 +54,17 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     CGSize size = multiLineAttributedString.typeface.sizeThatFits(CGSizeMake(SCREEN_WIDTH - 30.0, MAXFLOAT));
     DLog(@"size: %@, number of lines: %@", NSStringFromCGSize(size), @(size.height/20.0));
     self.multiLineLabel.attributedText = multiLineAttributedString;
+    
+    
+    [self.view addSubview:self.spacingLabel];
+    [self.spacingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.multiLineLabel.mas_bottom).offset(16.0);
+        make.centerX.mas_equalTo(self.view);
+        make.height.mas_equalTo(18.0);
+    }];
+    
+    self.spacingLabel.attributedText = @"".typeface.spacing(20.0);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,6 +91,14 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
         _multiLineLabel.preferredMaxLayoutWidth = SCREEN_WIDTH - 15.0 * 2;
     }
     return _multiLineLabel;
+}
+
+- (UILabel *)spacingLabel {
+    if (!_spacingLabel) {
+        _spacingLabel = [[UILabel alloc] init];
+        _spacingLabel.backgroundColor = [UIColor orangeColor];
+    }
+    return _spacingLabel;
 }
 
 @end

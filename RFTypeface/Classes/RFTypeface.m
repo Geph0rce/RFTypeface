@@ -174,18 +174,28 @@
         if (attributedString.length > 0) {
             NSParagraphStyle *paragraphStyle = [attributedString attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil];
             NSLineBreakMode lineBreakMode = paragraphStyle.lineBreakMode;
-            if (lineBreakMode == NSLineBreakByCharWrapping ||
-                lineBreakMode == NSLineBreakByWordWrapping) {
-                CGRect rect = [attributedString boundingRectWithSize:size  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-                return rect.size;
-            } else {
-                NSLog(@"invalid lineBreakMode, ( NSLineBreakByCharWrapping / NSLineBreakByWordWrapping only )");
+            if (lineBreakMode != NSLineBreakByCharWrapping) {
+                NSMutableParagraphStyle *modifiedParagraphStyle = [paragraphStyle mutableCopy];
+                modifiedParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                NSMutableAttributedString *modifiedAttributedString = [attributedString mutableCopy];
+                [modifiedAttributedString setAttributes:@{ NSParagraphStyleAttributeName : modifiedParagraphStyle } range:NSMakeRange(0, modifiedAttributedString.length)];
+                attributedString = [modifiedAttributedString copy];
             }
+            CGRect rect = [attributedString boundingRectWithSize:size  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+            return rect.size;
         }
         return CGSizeZero;
     };
 }
 
+- (NSAttributedString *(^)(CGFloat spacing))spacing {
+    return ^NSAttributedString *(CGFloat spacing) {
+        UIFont *miniFont = [UIFont systemFontOfSize:1.0];
+        float miniSpacing = @" ".typeface.font(miniFont).kern(0).size.width;
+        CGFloat kern = spacing - miniSpacing;
+        return @" ".typeface.font(miniFont).kern(kern).compose;
+    };
+}
 
 #pragma mark - Concat
 

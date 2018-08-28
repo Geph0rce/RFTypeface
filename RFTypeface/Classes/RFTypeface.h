@@ -101,4 +101,6 @@ NSAttributedString *_RFAttributedString(int size,...);
  */
 - (CGSize (^)(CGSize size))sizeThatFits;
 
+- (NSAttributedString *(^)(CGFloat spacing))spacing;
+
 @end
