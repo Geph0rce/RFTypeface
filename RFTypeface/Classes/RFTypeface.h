@@ -5,6 +5,7 @@
 //  Created by qianjie on 2017/12/8.
 //
 
+#import <RFTypeface/UIImage+RFTypeface.h>
 #import <RFTypeface/NSString+RFTypeface.h>
 #import <RFTypeface/NSAttributedString+RFTypeface.h>
 
