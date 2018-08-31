@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RFTypeface'
-  s.version          = '0.1.9'
+  s.version          = '0.2.0'
   s.summary          = 'make NSAttributedString easy to use'
 
 # This description is used to generate tags and improve search results.
