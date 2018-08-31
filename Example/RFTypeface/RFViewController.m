@@ -55,9 +55,11 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
         make.top.mas_equalTo(self.label.mas_bottom).offset(16.0);
         make.centerX.mas_equalTo(self.view);
     }];
-    
+   
+    spacing = @"".typeface.spacing(10.0);
+    NSAttributedString *emoji = [UIImage imageNamed:@"emoji"].attributedString.typeface.offset(-2.0).compose;
     NSAttributedString *line = [UIImage imageWithColor:[UIColor grayColor] size:CGSizeMake(ONE_PIXEL, 12.0)].attributedString;
-    self.seperatorLabel.attributedText = RFAttributedString(hello, spacing.copy, line, spacing, world);
+    self.seperatorLabel.attributedText = RFAttributedString(emoji, spacing.copy, hello, spacing.copy, line, spacing, world);
     
     [self.view addSubview:self.multiLineLabel];
     [self.multiLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -67,7 +69,7 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     }];
     
     NSAttributedString *multiLineAttributedString = kRFViewControllerString.typeface.normal(16.0).lineHeight(20.0).compose;
-    CGSize size = multiLineAttributedString.typeface.sizeThatFits(CGSizeMake(SCREEN_WIDTH - 30.0, MAXFLOAT));
+    CGSize size = multiLineAttributedString.typeface.sizeThatFits(CGSizeMake(SCREEN_WIDTH - 32.0, MAXFLOAT));
     DLog(@"size: %@, number of lines: %@", NSStringFromCGSize(size), @(size.height/20.0));
     self.multiLineLabel.attributedText = multiLineAttributedString;
 
@@ -101,8 +103,7 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     if (!_multiLineLabel) {
         _multiLineLabel = [[UILabel alloc] init];
         _multiLineLabel.numberOfLines = 0;
-        _multiLineLabel.font = [UIFont systemFontOfSize:15.0];
-        _multiLineLabel.preferredMaxLayoutWidth = SCREEN_WIDTH - 15.0 * 2;
+        _multiLineLabel.preferredMaxLayoutWidth = SCREEN_WIDTH - 16.0 * 2;
     }
     return _multiLineLabel;
 }

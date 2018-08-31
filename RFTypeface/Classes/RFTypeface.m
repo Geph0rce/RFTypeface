@@ -178,7 +178,8 @@
                 NSMutableParagraphStyle *modifiedParagraphStyle = [paragraphStyle mutableCopy];
                 modifiedParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
                 NSMutableAttributedString *modifiedAttributedString = [attributedString mutableCopy];
-                [modifiedAttributedString setAttributes:@{ NSParagraphStyleAttributeName : modifiedParagraphStyle } range:NSMakeRange(0, modifiedAttributedString.length)];
+                
+                [modifiedAttributedString addAttributes:@{ NSParagraphStyleAttributeName : modifiedParagraphStyle } range:NSMakeRange(0, modifiedAttributedString.length)];
                 attributedString = [modifiedAttributedString copy];
             }
             CGRect rect = [attributedString boundingRectWithSize:size  options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
