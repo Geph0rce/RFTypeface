@@ -114,6 +114,14 @@
     };
 }
 
+- (RFTypeface *(^)(NSTextAlignment alignment))alignment {
+    return ^id(NSTextAlignment alignment) {
+        self.paragraphStyle.alignment = alignment;
+        [self.attributes addEntriesFromDictionary:@{ NSParagraphStyleAttributeName : self.paragraphStyle }];
+        return self;
+    };
+}
+
 - (RFTypeface *(^)(CGFloat lineHeight))lineHeight {
     return ^id(CGFloat lineHeight) {
         self.paragraphStyle.minimumLineHeight = lineHeight;

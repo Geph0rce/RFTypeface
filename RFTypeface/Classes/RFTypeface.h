@@ -5,6 +5,7 @@
 //  Created by qianjie on 2017/12/8.
 //
 
+#import <RFTypeface/UIView+RFTypeface.h>
 #import <RFTypeface/UIImage+RFTypeface.h>
 #import <RFTypeface/NSString+RFTypeface.h>
 #import <RFTypeface/NSAttributedString+RFTypeface.h>
@@ -58,6 +59,12 @@ NSAttributedString *_RFAttributedString(int size,...);
  */
 - (RFTypeface *(^)(NSLineBreakMode lineBreakMode))lineBreakMode;
 
+
+/**
+ NSParagraphStyleAttributeName
+ alignment of string
+ */
+- (RFTypeface *(^)(NSTextAlignment alignment))alignment;
 
 /**
  NSParagraphStyleAttributeName
