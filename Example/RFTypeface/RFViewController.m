@@ -17,6 +17,7 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
 @property (nonatomic, strong) UILabel *spacingLabel;
 @property (nonatomic, strong) UILabel *emojiLabel;
 @property (nonatomic, strong) UIView *circle;
+@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -74,13 +75,15 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     CGSize size = multiLineAttributedString.typeface.sizeThatFits(CGSizeMake(SCREEN_WIDTH - 32.0, MAXFLOAT));
     DLog(@"size: %@, number of lines: %@", NSStringFromCGSize(size), @(size.height/20.0));
     self.multiLineLabel.attributedText = multiLineAttributedString;
+    
+    [self.view addSubview:self.button];
+    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.multiLineLabel.mas_bottom).offset(16.0);
+        make.left.mas_equalTo(self.multiLineLabel);
+        make.height.mas_equalTo(44.0);
+    }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-}
 
 #pragma mark - Getters
 
@@ -125,5 +128,16 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     return _circle;
 }
 
+- (UIButton *)button {
+    if (!_button) {
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        _button.titleLabel.numberOfLines = 2;
+        NSAttributedString *emoji = [UIImage imageNamed:@"emoji"].attributedString;
+        NSAttributedString *text = @"\nemoji".typeface.font([UIFont boldSystemFontOfSize:16.0]).color([UIColor blackColor]).compose;
+        text = RFAttributedString(emoji, text).typeface.alignment(NSTextAlignmentCenter).lineHeight(22.0).compose;
+        [_button setAttributedTitle:text forState:UIControlStateNormal];
+    }
+    return _button;
+}
 
 @end
