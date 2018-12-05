@@ -15,16 +15,23 @@ DEPENDENCIES:
   - RFFoundation
   - RFTypeface (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FLEX
+    - Masonry
+  https://github.com/Geph0rce/specs.git:
+    - RFFoundation
+
 EXTERNAL SOURCES:
   RFTypeface:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   RFFoundation: 9c10f17a70521341c0fae0e7cb65d9ed08ffb451
-  RFTypeface: 317a905925d330eeb87476b65ac52021cba14f1c
+  RFTypeface: 99ebf839ac59bbe6bf94fa7a8a69c3fd6a0a487e
 
 PODFILE CHECKSUM: b5c4f95de22f07b087eb2a00bc3bc28119afd1f0
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

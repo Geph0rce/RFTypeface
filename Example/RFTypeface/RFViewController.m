@@ -7,8 +7,11 @@
 //
 
 #import "RFViewController.h"
+#import "RFLabel.h"
 
 static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a lot like you were.Old man look at my life,I'm a lot like you were.Old man look at my life,Twenty four and there's so much moreLive alone in a paradiseThat makes me think of two.Love lost, such a cost,Give me things that don't get lost.Like a coin that won't get tossedRolling home to you.Old man take a look at my life I'm a lot like youI need someone to love me the whole day throughAh, one look in my eyes and you can tell that's true.Lullabies, look in your eyes,Run around the same old town.Doesn't mean that much to meTo mean that much to you.I've been first and lastLook at how the time goes past.But I'm all alone at last.Rolling home to you.";
+
+static NSString *const kDemoText = @"拦路雨偏似雪花 饮泣的你冻吗 Old man look at my life,I'm a lot  这风褛我给你磨到有襟花 连掉了渍也不怕 怎么始终牵挂 苦心选中今天想车你回家 原谅我不再送花  123456 伤口应要结疤 花瓣铺满心里坟场才害怕 如若你非我不嫁 彼此终必火化 一生一世等一天需要代价 谁都只得那双手 靠拥抱亦难任你拥有 要拥有必先懂失去怎接受 曾沿着jmjhkkjhghkj雪路浪游 为何为好事泪流 谁能凭爱意要富士山私有 何不把悲哀感觉 假设是来自你虚构 试管里找不到它染污眼眸 前尘硬化像石头 随缘地抛565765下便逃走   我绝不罕有 往街里绕过一周 我便化乌有   情人节不要说穿 只敢抚你发端 这种姿态可会令你更心酸 留在汽车里取暖 应该怎么规劝 怎么可以将手腕忍痛划损 人活到几岁算短 失恋只有更短 归家需要几里路谁能预算 忘掉我跟你恩怨 樱花开了几转 东京之旅一早比一世遥远 谁都只得那双手";
 
 @interface RFViewController ()
 
@@ -18,6 +21,9 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
 @property (nonatomic, strong) UILabel *emojiLabel;
 @property (nonatomic, strong) UIView *circle;
 @property (nonatomic, strong) UIButton *button;
+
+@property (nonatomic, strong) RFLabel *moreLabel;
+@property (nonatomic, strong) UIButton *moreButton;
 
 @end
 
@@ -64,26 +70,30 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
     spacing = @"".typeface.spacing(6.0);
     self.spacingLabel.attributedText = RFAttributedString(icon, spacing.copy, hello, spacing.copy, world);
 
-    [self.view addSubview:self.multiLineLabel];
-    [self.multiLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.view addSubview:self.multiLineLabel];
+//    [self.multiLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.spacingLabel.mas_bottom).offset(16.0);
+//        make.left.mas_equalTo(16.0);
+//        make.right.mas_equalTo(-16.0);
+//    }];
+    [self.view addSubview:self.moreLabel];
+    [self.moreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.spacingLabel.mas_bottom).offset(16.0);
         make.left.mas_equalTo(16.0);
         make.right.mas_equalTo(-16.0);
+        make.height.mas_equalTo(600);
     }];
     
     NSAttributedString *multiLineAttributedString = kRFViewControllerString.typeface.normal(16.0).lineHeight(20.0).compose;
     CGSize size = multiLineAttributedString.typeface.sizeThatFits(CGSizeMake(SCREEN_WIDTH - 32.0, MAXFLOAT));
     DLog(@"size: %@, number of lines: %@", NSStringFromCGSize(size), @(size.height/20.0));
-    self.multiLineLabel.attributedText = multiLineAttributedString;
-    
-    [self.view addSubview:self.button];
-    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.multiLineLabel.mas_bottom).offset(16.0);
-        make.left.mas_equalTo(self.multiLineLabel);
-        make.height.mas_equalTo(44.0);
-    }];
+    self.moreLabel.attributedText = kDemoText.typeface.font([UIFont systemFontOfSize:16.0]).color([UIColor blackColor]).compose;
 }
 
+- (void)moreAction:(id)sender {
+    self.moreButton.selected = !self.moreButton.selected;
+    self.moreLabel.numberOfLines = self.moreButton.selected ? 0 : 4;
+}
 
 #pragma mark - Getters
 
@@ -138,6 +148,29 @@ static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a
         [_button setAttributedTitle:text forState:UIControlStateNormal];
     }
     return _button;
+}
+
+- (RFLabel *)moreLabel {
+    if (!_moreLabel) {
+        _moreLabel = [[RFLabel alloc] init];
+        _moreLabel.preferredMaxLayoutWidth = SCREEN_WIDTH - 16.0 * 2;
+        _moreLabel.numberOfLines = 4;
+        _moreLabel.lineSpacing = 6.0;
+        _moreLabel.customView = self.moreButton;
+    }
+    return _moreLabel;
+}
+
+- (UIButton *)moreButton {
+    if (!_moreButton) {
+        _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _moreButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        [_moreButton setTitle:@"查看更多" forState:UIControlStateNormal];
+        [_moreButton setTitle:@"收起" forState:UIControlStateSelected];
+        [_moreButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [_moreButton addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _moreButton;
 }
 
 @end
