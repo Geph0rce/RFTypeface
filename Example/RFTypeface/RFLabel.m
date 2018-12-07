@@ -92,7 +92,9 @@
         NSAttributedString *lineString = [self.attributedText attributedSubstringFromRange:range].typeface.lineBreakMode(NSLineBreakByTruncatingTail).compose;
         [self.attributedLines addObject:lineString];
     }];
-    
+    CFRelease(frame);
+    CFRelease(path);
+    CFRelease(frameSetter);
     [self reloadLabels];
 
 }
