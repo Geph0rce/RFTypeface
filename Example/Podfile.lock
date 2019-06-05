@@ -1,37 +1,45 @@
 PODS:
   - FLEX (2.4.0)
   - Masonry (1.1.0)
-  - RFFoundation (0.1.1):
-    - RFFoundation/Categories (= 0.1.1)
-    - RFFoundation/Preprocessors (= 0.1.1)
-  - RFFoundation/Categories (0.1.1)
-  - RFFoundation/Preprocessors (0.1.1)
+  - RFFoundation (0.1.2):
+    - RFFoundation/Categories (= 0.1.2)
+    - RFFoundation/Preprocessors (= 0.1.2)
+    - RFFoundation/Utils (= 0.1.2)
+  - RFFoundation/Categories (0.1.2)
+  - RFFoundation/Preprocessors (0.1.2)
+  - RFFoundation/Utils (0.1.2)
   - RFTypeface (0.2.1):
     - RFFoundation
 
 DEPENDENCIES:
   - FLEX (~> 2.0)
   - Masonry
-  - RFFoundation
+  - "RFFoundation (from `git@github.com:Geph0rce/RFFoundation.git`, branch `yaz`)"
   - RFTypeface (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FLEX
     - Masonry
-  https://github.com/Geph0rce/specs.git:
-    - RFFoundation
 
 EXTERNAL SOURCES:
+  RFFoundation:
+    :branch: yaz
+    :git: "git@github.com:Geph0rce/RFFoundation.git"
   RFTypeface:
     :path: "../"
+
+CHECKOUT OPTIONS:
+  RFFoundation:
+    :commit: 3fe9fb8d7016676629ccc41383a799d8e7c3b5ec
+    :git: "git@github.com:Geph0rce/RFFoundation.git"
 
 SPEC CHECKSUMS:
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  RFFoundation: 9c10f17a70521341c0fae0e7cb65d9ed08ffb451
+  RFFoundation: b5a75a87e10baaa75a7f80874228b0ba00bcd63b
   RFTypeface: 99ebf839ac59bbe6bf94fa7a8a69c3fd6a0a487e
 
-PODFILE CHECKSUM: b5c4f95de22f07b087eb2a00bc3bc28119afd1f0
+PODFILE CHECKSUM: 6608fb1cd5fce394ee4962cbf30d9aed3a6d0847
 
 COCOAPODS: 1.5.3

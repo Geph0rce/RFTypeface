@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16B8F00F21B7A3FD00FD6D36 /* RFLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B8F00E21B7A3FD00FD6D36 /* RFLabel.m */; };
+		16ED03BA22A7C3E100057309 /* RTAnimatedNumberLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16ED03B922A7C3E100057309 /* RTAnimatedNumberLabel.m */; };
 		581AEE7A72F6E42D89421398 /* libPods-RFTypeface_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7331FE0E533611B165C27DA /* libPods-RFTypeface_Tests.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		16B8F00D21B7A3FD00FD6D36 /* RFLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFLabel.h; sourceTree = "<group>"; };
 		16B8F00E21B7A3FD00FD6D36 /* RFLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFLabel.m; sourceTree = "<group>"; };
+		16ED03B822A7C3E100057309 /* RTAnimatedNumberLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAnimatedNumberLabel.h; sourceTree = "<group>"; };
+		16ED03B922A7C3E100057309 /* RTAnimatedNumberLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAnimatedNumberLabel.m; sourceTree = "<group>"; };
 		2BEEC38CF2A51B4B952475DF /* Pods-RFTypeface_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFTypeface_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RFTypeface_Tests/Pods-RFTypeface_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C6A03BE005243C5F66B75DC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2CBB83F83D1F4D30155BB6A3 /* Pods-RFTypeface_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RFTypeface_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RFTypeface_Example/Pods-RFTypeface_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				6003F5A6195388D20070C39A /* RFViewController.m */,
 				16B8F00D21B7A3FD00FD6D36 /* RFLabel.h */,
 				16B8F00E21B7A3FD00FD6D36 /* RFLabel.m */,
+				16ED03B822A7C3E100057309 /* RTAnimatedNumberLabel.h */,
+				16ED03B922A7C3E100057309 /* RTAnimatedNumberLabel.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -350,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16ED03BA22A7C3E100057309 /* RTAnimatedNumberLabel.m in Sources */,
 				6003F59E195388D20070C39A /* RFAppDelegate.m in Sources */,
 				16B8F00F21B7A3FD00FD6D36 /* RFLabel.m in Sources */,
 				6003F5A7195388D20070C39A /* RFViewController.m in Sources */,

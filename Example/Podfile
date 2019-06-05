@@ -6,7 +6,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'RFTypeface_Example' do
   pod 'RFTypeface', :path => '../'
-  pod 'RFFoundation'
+  pod 'RFFoundation', :git => 'git@github.com:Geph0rce/RFFoundation.git', :branch => 'yaz'
   pod 'Masonry'
   pod 'FLEX', '~> 2.0', :configurations => ['Debug']
 
