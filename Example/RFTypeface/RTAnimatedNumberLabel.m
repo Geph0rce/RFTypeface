@@ -40,7 +40,7 @@
 - (void)startAnimation {
     // step & current value
     CGFloat duation = self.duration > 0 ?: 1.0;
-    self.step = fabs(self.toValue - self.fromValue) / duation * 60.0;
+    self.step = fabs(self.toValue - self.fromValue) / (duation * 60.0);
     self.currentValue = self.fromValue;
     
     // rock 'n' roll

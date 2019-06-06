@@ -8,6 +8,7 @@
 
 #import "RFViewController.h"
 #import "RFLabel.h"
+#import "RTAnimatedNumberLabel.h"
 
 static NSString *const kRFViewControllerString = @"Old man look at my life,I'm a lot like you were. Old man look at my life, I'm a lot like you were. Old man look at my life,Twenty four and there's so much moreLive alone in a paradiseThat makes me think of two.Love lost, such a cost,Give me things that don't get lost.Like a coin that won't get tossedRolling home to you.Old man take a look at my life I'm a lot like youI need someone to love me the whole day throughAh, one look in my eyes and you can tell that's true.Lullabies, look in your eyes,Run around the same old town.Doesn't mean that much to meTo mean that much to you.I've been first and lastLook at how the time goes past.But I'm all alone at last.Rolling home to you.";
 
@@ -24,6 +25,9 @@ static NSString *const kDemoText = @"拦路雨偏似雪花 饮泣的你冻吗 Ol
 
 @property (nonatomic, strong) RFLabel *moreLabel;
 @property (nonatomic, strong) UIButton *moreButton;
+
+@property (nonatomic, strong) RTAnimatedNumberLabel *integerLabel;
+@property (nonatomic, strong) RTAnimatedNumberLabel *floatLabel;
 
 @end
 
@@ -90,6 +94,29 @@ static NSString *const kDemoText = @"拦路雨偏似雪花 饮泣的你冻吗 Ol
     self.moreLabel.attributedText = kDemoText.typeface.font([UIFont systemFontOfSize:16.0]).color([UIColor blackColor]).compose;
     NSAttributedString *emoji_icon = [UIImage imageNamed:@"emoji"].attributedString;
     self.multiLineLabel.attributedText = RFAttributedString(emoji_icon.copy, multiLineAttributedString, emoji_icon.copy);
+    NSString *format = [NSString stringWithFormat:@"%%0%@d", @(6)];
+    NSString *paddingStr = [NSString stringWithFormat:format, 123];
+    DLog(@"padding: %@", paddingStr);
+    
+    [self.view addSubview:self.integerLabel];
+    [self.view addSubview:self.floatLabel];
+    [self.integerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(22.0);
+        make.top.mas_equalTo(self.multiLineLabel.mas_bottom).offset(20.0);
+    }];
+    
+    [self.floatLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.integerLabel.mas_right).offset(22.0);
+        make.centerY.mas_equalTo(self.integerLabel);
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.integerLabel startAnimation];
+        [self.floatLabel startAnimation];
+    });
 }
 
 - (void)moreAction:(id)sender {
@@ -173,6 +200,42 @@ static NSString *const kDemoText = @"拦路雨偏似雪花 饮泣的你冻吗 Ol
         [_moreButton addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moreButton;
+}
+
+
+- (RTAnimatedNumberLabel *)integerLabel {
+    if (!_integerLabel) {
+        NSString *price = @"49824";
+        _integerLabel = [[RTAnimatedNumberLabel alloc] init];
+        CGFloat value = price.floatValue;
+        _integerLabel.fromValue = value * 0.7;
+        _integerLabel.toValue = value;
+        _integerLabel.duration = 0.5;
+        _integerLabel.formatBlock = ^NSAttributedString *(CGFloat value) {
+            NSString *str = [NSString stringWithFormat:@"%@", @((NSInteger)roundf(value))];
+
+            NSAttributedString *price = str.typeface.font([UIFont boldSystemFontOfSize:32.0]).color([UIColor blackColor]).compose;
+            NSAttributedString *unit = @"元/㎡".typeface.font([UIFont systemFontOfSize:16.0]).color([UIColor blackColor]).compose;
+            return RFAttributedString(price, unit);
+        };
+    }
+    return _integerLabel;
+}
+
+- (RTAnimatedNumberLabel *)floatLabel {
+    if (!_floatLabel) {
+        NSString *trend = @"0.5";
+        _floatLabel = [[RTAnimatedNumberLabel alloc] init];
+        CGFloat value = trend.floatValue;
+        _floatLabel.fromValue = value * 0.7;
+        _floatLabel.toValue = value;
+        _floatLabel.duration = 0.5;
+        _floatLabel.formatBlock = ^NSAttributedString *(CGFloat value) {
+            NSString *trend = [NSString stringWithFormat:@"%.2f", value];
+            return trend.typeface.font([UIFont boldSystemFontOfSize:18.0]).color([UIColor redColor]).compose;
+        };
+    }
+    return _floatLabel;
 }
 
 @end

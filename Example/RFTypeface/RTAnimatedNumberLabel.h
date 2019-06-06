@@ -20,6 +20,10 @@ typedef NSAttributedString *(^RTAnimatedNumberLabelFormatBlock)(CGFloat value);
 
 @property (nonatomic, copy) RTAnimatedNumberLabelFormatBlock formatBlock;
 
+
+- (void)startAnimation;
+- (void)stopAnimation;
+
 @end
 
 NS_ASSUME_NONNULL_END
